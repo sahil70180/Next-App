@@ -73,3 +73,26 @@ export const updateRoom = async (
     room,
   });
 };
+
+export const deleteRoom = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  const room = await Room.findById(params.id);
+
+  if (!room) {
+    return NextResponse.json(
+      {
+        message: "No room found with this id",
+      },
+      { status: 404 }
+    );
+  }
+
+  await room.deleteOne()
+
+  return NextResponse.json({
+    success: true,
+    message: "Room Deleted Success",
+  });
+};
