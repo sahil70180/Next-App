@@ -2,9 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import Room from "../models/room";
 
 export const allRooms = async (req: NextRequest) => {
+  const rooms = await Room.find();
+
   return NextResponse.json(
     {
-      message: "Hello from the controller in the route",
+      success: true,
+      rooms,
     },
     { status: 200 }
   );
