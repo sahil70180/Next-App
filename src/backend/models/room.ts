@@ -80,7 +80,7 @@ const roomSchema: Schema = new Schema({
     type: Number,
     required: [true, "Please enter room guest capacity"],
   },
-  noOfBeds: {
+  numOfBeds: {
     type: Number,
     required: [true, "Please enter no of beds"],
   },
@@ -152,7 +152,7 @@ const roomSchema: Schema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    required: false,
   },
   createdAt: {
     type: Date,
