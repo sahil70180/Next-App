@@ -1,16 +1,20 @@
 import dbConnect from "@/backend/config/bdConnect";
-import { allRooms } from "@/backend/controllers/roomController";
+import { updateRoom } from "@/backend/controllers/roomController";
 import { createEdgeRouter } from "next-connect";
 import { NextRequest } from "next/server";
 
-interface RequestContext {}
+interface RequestContext {
+  params: {
+    id: string;
+  };
+}
 
 const router = createEdgeRouter<NextRequest, RequestContext>();
 
 dbConnect();
 
-router.get(allRooms);
+router.put(updateRoom);
 
-export async function GET(request: NextRequest, ctx: RequestContext) {
+export async function PUT(request: NextRequest, ctx: RequestContext) {
   return router.run(request, ctx);
 }

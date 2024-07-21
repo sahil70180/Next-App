@@ -9,6 +9,7 @@ export const allRooms = async (req: NextRequest) => {
     {
       success: true,
       totalRooms,
+      message: "All Rooms",
       rooms,
     },
     { status: 200 }
@@ -21,6 +22,7 @@ export const newRoom = async (req: NextRequest) => {
 
   return NextResponse.json({
     success: true,
+    message: "Room Created",
     room,
   });
 };
@@ -42,6 +44,32 @@ export const getRoomDetails = async (
 
   return NextResponse.json({
     success: true,
+    message: "Room Found with this id",
+    room,
+  });
+};
+
+export const updateRoom = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  const body = await req.json();
+  let room = await Room.findById(params.id);
+
+  if (!room) {
+    return NextResponse.json(
+      {
+        message: "No room found with this id",
+      },
+      { status: 404 }
+    );
+  }
+
+  room = await Room.findByIdAndUpdate(params?.id, body, { new: true });
+
+  return NextResponse.json({
+    success: true,
+    message: "Room Updated Success",
     room,
   });
 };
