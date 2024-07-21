@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seeder": "tsc src/seeder/seeder.ts --outDir .temp && node .temp/seeder/seeder.js && rmdir .temp /s /q"
   },
   "dependencies": {
     "mongoose": "^8.5.1",

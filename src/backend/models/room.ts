@@ -128,7 +128,7 @@ const roomSchema: Schema = new Schema({
     type: String,
     required: [true, "Please Enter room category"],
     enum: {
-      values: ["King", "Single", "Twin"],
+      values: ["King", "Single", "Twins"],
       message: "Please enter correct category",
     },
   },
