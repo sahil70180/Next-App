@@ -22,10 +22,18 @@ class ApiFilters {
 
   filter(): ApiFilters {
     const querycopy = { ...this.queryStr };
-    const removeFields = ["location"];
+    const removeFields = ["location", "page"];
     removeFields.forEach((el) => delete querycopy[el]);
 
     this.query = this.query.find(querycopy);
+    return this;
+  }
+
+  pagination(resPerPage: number): ApiFilters {
+    const currentPage = Number(this.queryStr?.page) || 1;
+    const skip = resPerPage * (currentPage - 1);
+
+    this.query = this.query.limit(resPerPage).skip(skip);
     return this;
   }
 }

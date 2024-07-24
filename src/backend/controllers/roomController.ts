@@ -17,16 +17,26 @@ export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
     queryStr[key] = value;
   });
 
+  const resPerPage = 4;
+  const roomCount: number = await Room.countDocuments();
+
   const apiFilters = new ApiFilters(Room, queryStr).search().filter();
 
-  const rooms: IRoom[] = await apiFilters.query;
+  let rooms: IRoom[] = await apiFilters.query;
 
-  const totalResults = rooms.length;
+  const filteredRoomCount = rooms.length;
+
+  apiFilters.pagination(resPerPage);
+  rooms = await apiFilters.query.clone();
+  // const totalResults = rooms.length;
 
   return NextResponse.json(
     {
       message: "All Rooms",
-      totalResults,
+      // totalResults,
+      roomCount,
+      filteredRoomCount,
+      resPerPage,
       rooms,
     },
     { status: 200 }
