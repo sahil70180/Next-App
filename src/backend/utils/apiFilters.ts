@@ -19,6 +19,15 @@ class ApiFilters {
     this.query = this.query.find({ ...location });
     return this;
   }
+
+  filter(): ApiFilters {
+    const querycopy = { ...this.queryStr };
+    const removeFields = ["location"];
+    removeFields.forEach((el) => delete querycopy[el]);
+
+    this.query = this.query.find(querycopy);
+    return this;
+  }
 }
 
 export default ApiFilters;
