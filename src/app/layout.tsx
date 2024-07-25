@@ -5,6 +5,8 @@ import "./globals.css";
 import Head from "./head";
 import { GlobalProvider } from "./GlobalProvider";
 import Script from "next/script";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +24,14 @@ export default function RootLayout({
     <html lang="en">
       <Head />
       <body className={inter.className}>
-        <GlobalProvider>{children}</GlobalProvider>
-        <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></Script>
+        <GlobalProvider>
+          <Header />
+
+          {children}
+          <Footer />
+        </GlobalProvider>
+
+        <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></Script>
         <Script src="https://kit.fontawesome.com/c44260752f.js"></Script>
       </body>
     </html>
