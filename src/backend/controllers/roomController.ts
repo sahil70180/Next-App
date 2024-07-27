@@ -17,6 +17,8 @@ export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
     queryStr[key] = value;
   });
 
+  throw new ErrorHandler("Hello", 404)
+
   const resPerPage = 4;
   const roomCount: number = await Room.countDocuments();
 
@@ -32,7 +34,6 @@ export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
 
   return NextResponse.json(
     {
-      message: "All Rooms",
       // totalResults,
       roomCount,
       filteredRoomCount,
@@ -49,7 +50,6 @@ export const newRoom = catchAsyncErrors(async (req: NextRequest) => {
 
   return NextResponse.json({
     success: true,
-    message: "Room Created",
     room,
   });
 });
@@ -64,7 +64,6 @@ export const getRoomDetails = catchAsyncErrors(
 
     return NextResponse.json({
       success: true,
-      message: "Room Found with this id",
       room,
     });
   }
@@ -83,7 +82,6 @@ export const updateRoom = catchAsyncErrors(
 
     return NextResponse.json({
       success: true,
-      message: "Room Updated Success",
       room,
     });
   }
@@ -101,7 +99,6 @@ export const deleteRoom = catchAsyncErrors(
 
     return NextResponse.json({
       success: true,
-      message: "Room Deleted Success",
     });
   }
 );

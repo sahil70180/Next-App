@@ -1,7 +1,7 @@
 import React from "react";
 import RoomItem from "./room/RoomItem";
 
-const Home = () => {
+const Home = ({ data }: any) => {
   return (
     <div>
       <section id="rooms" className="container mt-5">
