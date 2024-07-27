@@ -32,7 +32,7 @@ export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
 
   return NextResponse.json(
     {
-      message: "All Rooms Fetched",
+      message: "All Rooms",
       // totalResults,
       roomCount,
       filteredRoomCount,
