@@ -17,7 +17,7 @@ export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
     queryStr[key] = value;
   });
 
-  throw new ErrorHandler("Hello", 404)
+  // throw new ErrorHandler("Hello", 404)
 
   const resPerPage = 4;
   const roomCount: number = await Room.countDocuments();
@@ -28,13 +28,14 @@ export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
 
   const filteredRoomCount = rooms.length;
 
-  apiFilters.pagination(resPerPage);
-  rooms = await apiFilters.query.clone();
+  // apiFilters.pagination(resPerPage);
+  // rooms = await apiFilters.query.clone();
   // const totalResults = rooms.length;
 
   return NextResponse.json(
     {
       // totalResults,
+      success : true,
       roomCount,
       filteredRoomCount,
       resPerPage,

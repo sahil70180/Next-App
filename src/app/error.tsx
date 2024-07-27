@@ -13,12 +13,7 @@ export default function Error({
           <h1>{error?.message}</h1>
           <h2 className="display-4 fw-bold">Something went wrong!</h2>
           <p>Opps Something went wrong</p>
-          <button className="btn btn-primary"
-            onClick={
-              // Attempt to recover by trying to re-render the segment
-              () => reset?.()
-            }
-          >
+          <button className="btn btn-primary" onClick={() => reset?.()}>
             Try again
           </button>
         </div>
