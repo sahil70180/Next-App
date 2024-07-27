@@ -28,8 +28,8 @@ export const allRooms = catchAsyncErrors(async (req: NextRequest) => {
 
   const filteredRoomCount = rooms.length;
 
-  // apiFilters.pagination(resPerPage);
-  // rooms = await apiFilters.query.clone();
+  apiFilters.pagination(resPerPage);
+  rooms = await apiFilters.query.clone();
   // const totalResults = rooms.length;
 
   return NextResponse.json(

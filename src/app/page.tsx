@@ -6,15 +6,19 @@ export const metaData: Metadata = {
   title: "HomePage - BookIT",
 };
 
-const getRoomsData = async () => {
-  const res = await fetch(`${process.env.API_URL}/api/rooms`, {
+const getRoomsData = async (searchParams : string) => {
+  const urlParams = new URLSearchParams(searchParams);
+  const queryStr = urlParams.toString();
+
+  const res = await fetch(`${process.env.API_URL}/api/rooms?${queryStr}`, {
     cache: "no-store",
   });
   return await res.json();
 };
 
-export default async function HomePage() {
-  const data = await getRoomsData();
+export default async function HomePage({searchParams} : {searchParams : string}) {
+  // console.log(searchParams)
+  const data = await getRoomsData(searchParams);
   if (data?.message) {
     return <Error error={data} />;
   }

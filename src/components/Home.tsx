@@ -1,6 +1,7 @@
 import React from "react";
 import RoomItem from "./room/RoomItem";
 import { IRoom } from "@/backend/models/room";
+import CustomPagination from "./layout/CustomPagination";
 
 interface Props {
   data: {
@@ -13,6 +14,7 @@ interface Props {
 }
 const Home = ({ data }: Props) => {
   const { rooms, resPerPage, filteredRoomCount } = data;
+
   return (
     <div>
       <section id="rooms" className="container mt-5">
@@ -24,10 +26,14 @@ const Home = ({ data }: Props) => {
           {rooms?.length === 0 ? (
             <div className="alert alert-danger mt-5 w-100">No Rooms</div>
           ) : (
-            rooms?.map((room, index) => <RoomItem key={index} room={room}/>)
+            rooms?.map((room, index) => <RoomItem key={index} room={room} />)
           )}
         </div>
       </section>
+      <CustomPagination
+        resPerPage={resPerPage}
+        filteredRoomCount={filteredRoomCount}
+      />
     </div>
   );
 };
