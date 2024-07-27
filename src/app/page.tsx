@@ -1,6 +1,12 @@
 import Home from "@/components/Home";
 
-export default function HomePage() {
+const getRoomsData = async () => {
+  const res = await fetch("http://localhost:3000/api/rooms");
+  return await res.json();
+};
+export default async function HomePage() {
+  const rooms = await getRoomsData();
+  console.log("rooms :", rooms.message);
   return (
     <div className="container">
       <Home />
