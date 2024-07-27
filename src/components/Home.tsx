@@ -1,7 +1,6 @@
 import React from "react";
 import RoomItem from "./room/RoomItem";
 
-
 const Home = () => {
   return (
     <div>
